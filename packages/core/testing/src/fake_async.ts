@@ -69,6 +69,7 @@ export function fakeAsync(fn: Function): (...args: any[]) => any {
  *
  * For example,
  *
+ * ```
  * it ('test with nested setTimeout', fakeAsync(() => {
  *   let nestedTimeoutInvoked = false;
  *   function funcWithNestedTimeout() {
@@ -80,10 +81,12 @@ export function fakeAsync(fn: Function): (...args: any[]) => any {
  *   tick();
  *   expect(nestedTimeoutInvoked).toBe(true);
  * }));
+ * ```
  *
  * in this case, we have a nested timeout (new macroTask), when we tick, both the
  * funcWithNestedTimeout and the nested timeout both will be invoked.
  *
+ * ```
  * it ('test with nested setTimeout', fakeAsync(() => {
  *   let nestedTimeoutInvoked = false;
  *   function funcWithNestedTimeout() {
@@ -95,6 +98,7 @@ export function fakeAsync(fn: Function): (...args: any[]) => any {
  *   tick(0, {processNewMacroTasksSynchronously: false});
  *   expect(nestedTimeoutInvoked).toBe(false);
  * }));
+ * ```
  *
  * if we pass the tickOptions with processNewMacroTasksSynchronously to be false, the nested timeout
  * will not be invoked.
